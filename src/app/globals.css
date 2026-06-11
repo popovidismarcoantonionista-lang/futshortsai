@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lora:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Blink UI Theme CSS
+   REQUIRED for @blinkdotnew/ui components to render correctly.
+   BlinkUIProvider adds .theme-{name} + .dark/.light to <html>,
+   activating the matching CSS variable set below.
+   ───────────────────────────────────────────────────────────────────────────── */
+@import '@blinkdotnew/ui/styles';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 142 76% 36%;
+  --primary-foreground: 355.7 100% 97.3%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 142 76% 36%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 142 76% 36%;
+  --primary-foreground: 355.7 100% 97.3%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 142 76% 36%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    min-height: 100dvh;
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    letter-spacing: var(--tracking-normal);
+  }
+}
+
+.glass {
+  @apply bg-background/60 backdrop-blur-md border border-white/5;
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300;
+}
+
+@keyframes progress-indefinite {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-progress-indefinite {
+  animation: progress-indefinite 2s infinite linear;
+}
