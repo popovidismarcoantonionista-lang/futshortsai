@@ -35,7 +35,7 @@ export default function ToolLayout({ children }: { children: React.ReactNode }) 
               <Trophy className="text-white w-6 h-6" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-lg">Fut Shorts AI</span>
+              <span className="font-bold tracking-tight text-lg text-white">Fut Shorts AI</span>
               <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Pro Tool</span>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function ToolLayout({ children }: { children: React.ReactNode }) 
                 label={item.label}
                 href={item.href}
                 active={pathname === item.href}
-                className="hover:bg-white/5 transition-colors rounded-lg"
+                className="hover:bg-white/5 transition-colors rounded-lg text-white/70"
               />
             ))}
           </div>
@@ -74,7 +74,7 @@ export default function ToolLayout({ children }: { children: React.ReactNode }) 
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-start text-xs truncate">
-                    <span className="font-bold truncate w-32 text-left">{user?.displayName || 'Usuário Pro'}</span>
+                    <span className="font-bold truncate w-32 text-left text-white">{user?.displayName || 'Usuário Pro'}</span>
                     <span className="text-muted-foreground truncate w-32 text-left opacity-60">{user?.email}</span>
                   </div>
                 </Button>
@@ -82,8 +82,8 @@ export default function ToolLayout({ children }: { children: React.ReactNode }) 
               <DropdownMenuContent align="end" side="right" className="w-56 glass border-white/10">
                 <DropdownMenuLabel className="text-xs text-muted-foreground uppercase">Minha Conta</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-white/5" />
-                <DropdownMenuItem className="focus:bg-white/5 cursor-pointer">Perfil</DropdownMenuItem>
-                <DropdownMenuItem className="focus:bg-white/5 cursor-pointer">Faturamento</DropdownMenuItem>
+                <DropdownMenuItem className="focus:bg-white/5 cursor-pointer text-white">Perfil</DropdownMenuItem>
+                <DropdownMenuItem className="focus:bg-white/5 cursor-pointer text-white">Faturamento</DropdownMenuItem>
                 <DropdownMenuSeparator className="bg-white/5" />
                 <DropdownMenuItem onClick={logout} className="text-destructive focus:bg-destructive/10 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" /> Sair
@@ -99,7 +99,7 @@ export default function ToolLayout({ children }: { children: React.ReactNode }) 
           <MobileSidebarTrigger />
           <div className="flex items-center gap-2 ml-4">
             <Trophy className="text-primary w-5 h-5" />
-            <span className="font-bold text-sm tracking-tight uppercase">Fut Shorts AI</span>
+            <span className="font-bold text-sm tracking-tight uppercase text-white">Fut Shorts AI</span>
           </div>
         </div>
         <div className="flex-1 overflow-y-auto">

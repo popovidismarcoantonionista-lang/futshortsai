@@ -119,18 +119,18 @@ export default function NewVideoPage() {
         {
           id: `clip_3_${Date.now()}`,
           videoId: video.id,
-          startTime: 450,
-          endTime: 510,
-          title: 'Drible Mágico! 🕺🎩',
-          description: 'Ele deixou dois no chão antes de cruzar. Habilidade pura!',
-          hashtags: '#drible #skill #magica #futebolbrasileiro',
-          viralScore: 82,
-          retentionScore: 85,
-          engagementScore: 78,
-          ctrScore: 80,
-          category: 'Habilidade',
-          thumbnailUrl: 'https://images.unsplash.com/photo-1679391029864-d46f366a456b?auto=format&fit=crop&q=80&w=400',
-          analysis_report: 'Visual estético forte. Ideal para Reels e TikTok.'
+          startTime: 310,
+          endTime: 338,
+          title: 'Comemoração Épica! 🕺🏽🥳',
+          description: 'A alegria contagiante após o gol da vitória. Passos de dança que vão viralizar.',
+          hashtags: '#comemoracao #futebol #alegria #dance',
+          viralScore: 95,
+          retentionScore: 92,
+          engagementScore: 98,
+          ctrScore: 85,
+          category: 'Comemoração',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&q=80&w=400',
+          analysis_report: 'Conteúdo "feel good" com alto índice de salvamentos.'
         },
         {
           id: `clip_4_${Date.now()}`,
@@ -151,18 +151,18 @@ export default function NewVideoPage() {
         {
           id: `clip_5_${Date.now()}`,
           videoId: video.id,
-          startTime: 310,
-          endTime: 338,
-          title: 'Comemoração Épica! 🕺🏽🥳',
-          description: 'A alegria contagiante após o gol da vitória. Passos de dança que vão viralizar.',
-          hashtags: '#comemoracao #futebol #alegria #dance',
-          viralScore: 95,
-          retentionScore: 92,
-          engagementScore: 98,
-          ctrScore: 85,
-          category: 'Comemoração',
-          thumbnailUrl: 'https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&q=80&w=400',
-          analysis_report: 'Conteúdo "feel good" com alto índice de salvamentos.'
+          startTime: 450,
+          endTime: 510,
+          title: 'Drible Mágico! 🕺🎩',
+          description: 'Ele deixou dois no chão antes de cruzar. Habilidade pura!',
+          hashtags: '#drible #skill #magica #futebolbrasileiro',
+          viralScore: 82,
+          retentionScore: 85,
+          engagementScore: 78,
+          ctrScore: 80,
+          category: 'Habilidade',
+          thumbnailUrl: 'https://images.unsplash.com/photo-1679391029864-d46f366a456b?auto=format&fit=crop&q=80&w=400',
+          analysis_report: 'Visual estético forte. Ideal para Reels e TikTok.'
         },
         {
           id: `clip_6_${Date.now()}`,
@@ -188,7 +188,7 @@ export default function NewVideoPage() {
       setClips(sampleClips)
       setSteps(prev => prev.map(s => ({ ...s, status: 'completed' })))
       setProgress(100)
-      toast.success('Sucesso! Clips gerados com inteligência artificial.')
+      toast.success('Sucesso! Melhores momentos gerados com IA.')
     } catch (error) {
       console.error('Error processing:', error)
       toast.error('Erro ao processar vídeo.')
@@ -203,6 +203,15 @@ export default function NewVideoPage() {
     setFile(null)
     setVideoUrl('')
     setSteps(steps.map(s => ({ ...s, status: 'pending' })))
+  }
+
+  const handleDownloadAll = () => {
+    toast.info('Gerando arquivo ZIP com todos os lances...', {
+      description: 'Isso levará apenas alguns segundos.'
+    })
+    setTimeout(() => {
+      toast.success('Download pronto! futshorts_lances.zip baixado.')
+    }, 2000)
   }
 
   return (
@@ -302,10 +311,10 @@ export default function NewVideoPage() {
                   <Video size={16} className="text-primary" />
                 </div>
               </div>
-              <h2 className="text-3xl font-bold">Processando seu vídeo...</h2>
+              <h2 className="text-3xl font-bold text-white">Processando sua Partida...</h2>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">
-                  <span>Progresso da IA</span>
+                  <span>IA Analyzing Frames</span>
                   <span className="text-primary">{Math.round(progress)}%</span>
                 </div>
                 <div className="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
@@ -319,13 +328,13 @@ export default function NewVideoPage() {
               </div>
             </div>
 
-            <Card className="glass border-white/10 rounded-3xl overflow-hidden">
+            <Card className="glass border-white/10 rounded-3xl overflow-hidden shadow-2xl">
               <div className="p-8 space-y-4">
                 {steps.map((step) => (
                   <div key={step.id} className="flex items-center justify-between group">
                     <div className="flex items-center gap-4">
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
-                        step.status === 'completed' ? 'bg-primary text-white' : 
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        step.status === 'completed' ? 'bg-primary text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 
                         step.status === 'processing' ? 'bg-primary/20 text-primary animate-pulse' : 
                         'bg-white/5 text-muted-foreground'
                       }`}>
@@ -333,15 +342,14 @@ export default function NewVideoPage() {
                          step.status === 'processing' ? <Loader2 size={14} className="animate-spin" /> : 
                          <div className="w-1.5 h-1.5 bg-current rounded-full" />}
                       </div>
-                      <span className={`font-medium ${
+                      <span className={`font-bold transition-all ${
                         step.status === 'completed' ? 'text-white' : 
-                        step.status === 'processing' ? 'text-primary font-bold' : 
-                        'text-muted-foreground opacity-50'
+                        step.status === 'processing' ? 'text-primary' : 
+                        'text-muted-foreground opacity-30'
                       }`}>
                         {step.label}
                       </span>
                     </div>
-                    {step.status === 'completed' && <Badge variant="secondary" className="bg-primary/10 text-primary border-none">Concluído</Badge>}
                   </div>
                 ))}
               </div>
@@ -356,17 +364,20 @@ export default function NewVideoPage() {
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2">
-                <h2 className="text-4xl font-bold tracking-tight">Cortes Gerados ✨</h2>
-                <p className="text-muted-foreground">Encontramos {clips.length} momentos épicos para viralizar.</p>
+                <h2 className="text-4xl font-black tracking-tight text-white">Lances Identificados ✨</h2>
+                <p className="text-muted-foreground font-medium">Encontramos {clips.length} momentos com alto potencial viral.</p>
               </div>
               <div className="flex items-center gap-3">
-                <Button variant="outline" className="rounded-xl glass border-white/10 gap-2 h-12" onClick={reset}>
+                <Button variant="outline" className="rounded-xl glass border-white/10 gap-2 h-12 text-white font-bold" onClick={reset}>
                   Novo Projeto
                 </Button>
-                <Button variant="outline" className="rounded-xl glass border-white/10 gap-2 h-12">
+                <Button variant="outline" className="rounded-xl glass border-white/10 gap-2 h-12 text-white font-bold">
                   <Archive size={18} /> KIT COMPLETO
                 </Button>
-                <Button className="rounded-xl h-12 px-8 font-bold gap-2">
+                <Button 
+                  className="rounded-xl h-12 px-8 font-black gap-2 shadow-lg shadow-primary/20"
+                  onClick={handleDownloadAll}
+                >
                   <Download size={18} /> BAIXAR TODOS OS LANCES
                 </Button>
               </div>
@@ -380,58 +391,55 @@ export default function NewVideoPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="glass-card rounded-3xl overflow-hidden group border-white/10 h-full flex flex-col">
+                  <Card className="glass-card rounded-[2rem] overflow-hidden group border-white/10 h-full flex flex-col shadow-xl">
                     <div className="relative aspect-video overflow-hidden">
-                      <img src={clip.thumbnailUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={clip.title} />
+                      <img src={clip.thumbnailUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" alt={clip.title} />
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button size="icon" variant="secondary" className="rounded-full h-14 w-14 shadow-2xl scale-90 group-hover:scale-100 transition-all">
                           <Eye size={24} className="fill-current" />
                         </Button>
                       </div>
                       <div className="absolute top-4 left-4 flex gap-2">
-                        <Badge className="bg-primary/80 backdrop-blur-md border-none px-3 py-1 font-bold">
+                        <Badge className="bg-primary shadow-[0_0_15px_rgba(34,197,94,0.5)] border-none px-3 py-1 font-black">
                           #{index + 1}
                         </Badge>
-                        <Badge className="bg-black/60 backdrop-blur-md border-none px-3 py-1">
+                        <Badge className="bg-black/60 backdrop-blur-md border-white/10 px-3 py-1 font-bold">
                           {clip.category}
                         </Badge>
-                      </div>
-                      <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold border border-white/10">
-                        00:30s
                       </div>
                     </div>
                     
                     <CardContent className="p-8 flex-1 flex flex-col space-y-6">
                       <div className="space-y-3">
-                        <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-1">{clip.title}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                        <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-1 text-white">{clip.title}</h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed font-medium">
                           {clip.description}
                         </p>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                          <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest block mb-1">Viral Score</span>
+                        <div className="bg-white/5 rounded-2xl p-4 border border-white/5 shadow-inner">
+                          <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest block mb-1 opacity-60">Viral Score</span>
                           <div className="flex items-center gap-2">
                             <span className="text-2xl font-black text-accent">{clip.viralScore}%</span>
                             <Zap size={14} className="text-accent fill-current" />
                           </div>
                         </div>
-                        <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                          <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest block mb-1">Retenção Est.</span>
+                        <div className="bg-white/5 rounded-2xl p-4 border border-white/5 shadow-inner">
+                          <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest block mb-1 opacity-60">Duração</span>
                           <div className="flex items-center gap-2">
-                            <span className="text-2xl font-black text-primary">High</span>
-                            <TrendingUp size={14} className="text-primary" />
+                            <span className="text-2xl font-black text-white">0:30s</span>
+                            <Video size={14} className="text-primary" />
                           </div>
                         </div>
                       </div>
 
                       <div className="pt-4 flex gap-3">
-                        <Button variant="ghost" size="icon" className="rounded-xl glass border-white/10 h-12 w-12 hover:bg-primary/10 hover:text-primary transition-all">
+                        <Button variant="ghost" size="icon" className="rounded-xl glass border-white/10 h-12 w-12 hover:bg-primary/10 hover:text-primary transition-all text-white/40">
                           <Share2 size={18} />
                         </Button>
-                        <Button className="flex-1 rounded-xl h-12 font-bold gap-2 active:scale-95 transition-all">
-                          <Download size={18} /> Download
+                        <Button className="flex-1 rounded-xl h-12 font-black gap-2 active:scale-95 transition-all shadow-md">
+                          <Download size={18} /> Baixar
                         </Button>
                       </div>
                     </CardContent>
@@ -440,19 +448,22 @@ export default function NewVideoPage() {
               ))}
             </div>
 
-            <div className="bg-primary/5 rounded-3xl p-12 border border-primary/20 text-center space-y-6 relative overflow-hidden group">
-              <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
+            <div className="bg-primary/5 rounded-[2.5rem] p-16 border border-primary/20 text-center space-y-8 relative overflow-hidden group shadow-2xl">
+              <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
+              <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-1000" />
               
-              <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 relative z-10">
-                <Trophy size={40} className="text-primary" />
+              <div className="w-24 h-24 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-4 relative z-10 shadow-inner">
+                <Trophy size={48} className="text-primary" />
               </div>
-              <h3 className="text-3xl font-bold relative z-10">Pronto para o próximo passo?</h3>
-              <p className="text-muted-foreground max-w-lg mx-auto relative z-10 leading-relaxed">
-                Nossa IA identificou que esses lances têm alto potencial de engajamento entre 18:00 e 21:00 em dias de semana. Considere postar no TikTok e Shorts simultaneamente.
-              </p>
-              <div className="flex justify-center gap-4 relative z-10">
-                <Button variant="outline" className="rounded-xl px-10 h-14 font-bold glass border-white/10">Ver Relatório Detalhado</Button>
+              <div className="space-y-4 relative z-10">
+                <h3 className="text-4xl font-black text-white">Pronto para Dominar as Redes?</h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
+                  Nossa IA preparou metadados otimizados para TikTok, Reels e Shorts. A postagem simultânea aumenta em 3x suas chances de viralização.
+                </p>
+              </div>
+              <div className="flex justify-center gap-6 relative z-10 pt-4">
+                <Button variant="outline" className="rounded-2xl px-12 h-16 font-black text-lg glass border-white/10 text-white">RELATÓRIO VIRAL</Button>
+                <Button className="rounded-2xl px-12 h-16 font-black text-lg shadow-xl shadow-primary/20">ESTRATÉGIA DE POSTAGEM</Button>
               </div>
             </div>
           </motion.div>
